@@ -37,15 +37,17 @@ int main() {
 
 	*/
 
-	memPool_t pool3(2 ,5);
+	memPool_t pool3(2 ,1);
 
 	char Stuff[16];
 	int derp = pool3.read(Stuff, 4);
 	cout << "pool 3 read : " << derp << " chars, content is : " << Stuff << endl;
-	int herp = pool3.write("amiramir", 9, 0);
+	int herp = pool3.write("amiramiramir", 13, 0);
 	cout << "pool 3 wrote : " << herp << " chars " << endl;
-	derp = pool3.read(Stuff, 9, 0);
+	derp = pool3.read(Stuff, 13, 0);
 	cout << "pool 3 read : " << derp << " chars, content is : " << Stuff << endl;
+	cout << "actual size is  : " << pool3.getActualSize() << endl;
+	cout << "page num is  : " << pool3.getNumberOfPages() << endl;
 
 	return 0;
 }

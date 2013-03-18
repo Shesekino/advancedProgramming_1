@@ -39,16 +39,6 @@ memPool_t::~memPool_t() {
 	}
 }
 
-int memPool_t::getPoolCapacity() const {
-	memPageNode_t* curr = head;
-	int sum = 0;
-	while(curr != 0) {
-		sum += curr->currentPage.getPageCapacity();
-		curr = curr->nextNode;
-	}
-	return sum;
-}
-
 int memPool_t::getCurrentPosition() const {
 	int sum = 0;
 	int pagesPassed = 0;
@@ -90,6 +80,52 @@ bool memPool_t::setCurrentPosition(int position) {
 
 bool memPool_t::isPoolEmpty() const {
 	return (head->currentPage.isPageEmpty());
+}
+
+int memPool_t::getActualSize() const {
+	memPageNode_t* curr = head;
+	int sum = 0;
+
+	while(curr != 0) {
+		sum += curr->currentPage.getPageActualSize();
+		if(!curr->currentPage.isPageFull())
+			break;
+		curr = curr->nextNode;
+	}
+
+	return sum;
+}
+
+int memPool_t::getPoolCapacity() const {
+	memPageNode_t* curr = head;
+	int sum = 0;
+	while(curr != 0) {
+		sum += curr->currentPage.getPageCapacity();
+		curr = curr->nextNode;
+	}
+	return sum;
+}
+
+int memPool_t::getNumberOfPages() const {
+	memPageNode_t* curr = head;
+	int num = 0;
+
+	while(curr != 0) {
+		num++;
+		curr = curr->nextNode;
+	}
+
+	return num;
+}
+
+int memPool_t::getDefaultPageSize() const {
+	return defaultPageSize;
+}
+
+void memPool_t::setDefaultPageSize(int newPageSize) {
+	if(newPageSize > 0) {
+		defaultPageSize = newPageSize;
+	}
 }
 
 int memPool_t::read(char* buffer, int length) {
@@ -172,3 +208,4 @@ int memPool_t::write(const char* const buffer, int length, int position) {
 		return write(buffer, length);
 	}
 }
+
