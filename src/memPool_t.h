@@ -28,7 +28,6 @@ public:
 	int write(const void* buffer, int length);
 	int write(const void* buffer, int length, int position);
 
-
 private:
 	memPool_t(const memPool_t& p);
 	void operator=(const memPool_t& p);
