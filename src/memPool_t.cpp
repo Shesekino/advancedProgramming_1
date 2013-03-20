@@ -7,8 +7,6 @@
 
 #include "memPage_t.h"
 #include "memPool_t.h"
-using namespace std;
-#include <iostream>
 
 memPool_t::memPool_t(int defaultPageSize, int capacityPages) : 	defaultPageSize(defaultPageSize),
 																capacityPages(capacityPages),

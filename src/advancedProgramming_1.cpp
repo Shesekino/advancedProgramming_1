@@ -12,7 +12,7 @@
 using namespace std;
 
 int main() {
-	/*
+
 	memPage_t myObj(16);
 
 	cout << "current position is: " << myObj.getCurrentPosition() << endl;
@@ -31,21 +31,20 @@ int main() {
 	myObj.setCurrentPosition(5);
 	cout << "current position is: " << myObj.getCurrentPosition() << endl;
 
+	// following commented code doesn't work because we disabled copy-c'tor and assignment operator
 	//memPage_t mySecondObj = myObj;
 	//memPage_t mySecondObj(16);
 	//mySecondObj = myObj;
 
-	*/
-
 	memPool_t pool3(2 ,1);
 
-	char Stuff[16];
+	char Stuff2[16];
 	int derp = pool3.read(Stuff, 4);
-	cout << "pool 3 read : " << derp << " chars, content is : " << Stuff << endl;
+	cout << "pool 3 read : " << derp << " chars, content is : " << Stuff2 << endl;
 	int herp = pool3.write("amiramiramir", 13, 0);
 	cout << "pool 3 wrote : " << herp << " chars " << endl;
-	derp = pool3.read(Stuff, 13, 0);
-	cout << "pool 3 read : " << derp << " chars, content is : " << Stuff << endl;
+	derp = pool3.read(Stuff2, 13, 0);
+	cout << "pool 3 read : " << derp << " chars, content is : " << Stuff2 << endl;
 	cout << "actual size is  : " << pool3.getActualSize() << endl;
 	cout << "page num is  : " << pool3.getNumberOfPages() << endl;
 

@@ -6,8 +6,6 @@
  */
 
 #include "memPage_t.h"
-#include <iostream>
-using namespace std;
 
 memPage_t::memPage_t(int pageSize) : capacity((pageSize > 0) ? pageSize : DEFAULT_SIZE), currentPosition(0), actualSize(0), data(new char[(capacity > 0) ? capacity : DEFAULT_SIZE]) { }
 
@@ -49,7 +47,7 @@ int memPage_t::read(char* buffer, int length) {
 
 int memPage_t::read(char* buffer, int length, int position) {
 	int i;
-cout << "entered page read, position: " << position << " actualSize: " << actualSize << endl;
+
 	for(i = 0; (i < length) && (position < actualSize); i++) {
 		buffer[i] = data[position++];
 	}
