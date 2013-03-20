@@ -23,10 +23,11 @@ public:
 	int getNumberOfPages() const;
 	int getDefaultPageSize() const;
 	void setDefaultPageSize(int newPageSize);
-	int read(char* buffer, int length);
-	int read(char* buffer, int length, int position);
-	int write(const char* const buffer, int length);
-	int write(const char* const buffer, int length, int position);
+	int read(void* buffer, int length);
+	int read(void* buffer, int length, int position);
+	int write(const void* buffer, int length);
+	int write(const void* buffer, int length, int position);
+
 
 private:
 	memPool_t(const memPool_t& p);

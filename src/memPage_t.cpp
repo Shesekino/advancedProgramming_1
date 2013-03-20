@@ -41,30 +41,30 @@ bool memPage_t::isPageFull() const {
 	return actualSize == capacity;
 }
 
-int memPage_t::read(char* buffer, int length) {
+int memPage_t::read(void* buffer, int length) {
 	return read(buffer, length, currentPosition);
 }
 
-int memPage_t::read(char* buffer, int length, int position) {
+int memPage_t::read(void* buffer, int length, int position) {
 	int i;
 
 	for(i = 0; (i < length) && (position < actualSize); i++) {
-		buffer[i] = data[position++];
+		((char*)buffer)[i] = data[position++];
 	}
 
 	currentPosition = position;
 	return i;
 }
 
-int memPage_t::write(const char* const buffer, int length) {
+int memPage_t::write(const void* const buffer, int length) {
 	return write(buffer, length, currentPosition);
 }
 
-int memPage_t::write(const char* const buffer, int length, int position) {
+int memPage_t::write(const void* const buffer, int length, int position) {
 	int i;
 
 	for(i = 0; (i < length) && ( position < capacity); i++) {
-		data[position++] = buffer[i];
+		data[position++] = ((char*)buffer)[i];
 	}
 
 	if(position > actualSize) {

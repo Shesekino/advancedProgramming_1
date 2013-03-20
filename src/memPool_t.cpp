@@ -126,7 +126,7 @@ void memPool_t::setDefaultPageSize(int newPageSize) {
 	}
 }
 
-int memPool_t::read(char* buffer, int length) {
+int memPool_t::read(void* buffer, int length) {
 	int numRead = 0;
 
 	// getting relevant page
@@ -159,7 +159,7 @@ int memPool_t::read(char* buffer, int length) {
 	return numRead;
 }
 
-int memPool_t::read(char* buffer, int length, int position) {
+int memPool_t::read(void* buffer, int length, int position) {
 	if(!(this->setCurrentPosition(position))) {
 		return 0;
 	} else {
@@ -167,7 +167,7 @@ int memPool_t::read(char* buffer, int length, int position) {
 	}
 }
 
-int memPool_t::write(const char* buffer, int length) {
+int memPool_t::write(const void* buffer, int length) {
 	int numWrote = 0;
 
 	// getting relevant page
@@ -199,11 +199,10 @@ int memPool_t::write(const char* buffer, int length) {
 	return numWrote;
 }
 
-int memPool_t::write(const char* const buffer, int length, int position) {
+int memPool_t::write(const void* const buffer, int length, int position) {
 	if(!(this->setCurrentPosition(position))) {
 		return 0;
 	} else {
 		return write(buffer, length);
 	}
 }
-

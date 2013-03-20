@@ -20,10 +20,10 @@ public:
 	bool isPageFull() const;
 	int getCurrentPosition() const;
 	bool setCurrentPosition(int position);
-	int read(char* buffer, int length);
-	int read(char* buffer, int length, int position);
-	int write(const char* const buffer, int length);
-	int write(const char* const buffer, int length, int position);
+	int read(void* buffer, int length);
+	int read(void* buffer, int length, int position);
+	int write(const void* const buffer, int length);
+	int write(const void* const buffer, int length, int position);
 private:
 	memPage_t(const memPage_t& p);
 	void operator=(const memPage_t& p);
